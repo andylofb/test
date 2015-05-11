@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>se.lofberg.MarinanMedlem</groupId>
+  <artifactId>MarinanMedlemEar</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>ear</packaging>
+  <name>MarinanMedlemEar</name>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>se.lofberg.MarinanMedlem</groupId>
+  		<artifactId>MarinanMedlemWeb</artifactId>
+  		<version>${project.version}</version>
+  		<type>war</type>
+  	</dependency>
+  	<dependency>
+  		<groupId>se.lofberg.MarinanMedlem</groupId>
+  		<artifactId>MarinanMedlemEjb</artifactId>
+  		<version>${project.version}</version>
+  		<type>ejb</type>
+  	</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <earSourceDirectory>EarContent</earSourceDirectory>
+          <version>6</version>
+          <defaultLibBundleDir>lib</defaultLibBundleDir>
+         <modules>
+         	<webModule>
+         		<groupId>${project.groupId}</groupId>
+        		<artifactId>MarinanMedlemWeb</artifactId>
+        		<bundleFileName>MarinanMedlem.war</bundleFileName>
+        		<contextRoot>/marinanmedlem</contextRoot>
+         	</webModule> 
+           	<ejbModule>
+         		<groupId>${project.groupId}</groupId>
+        		<artifactId>MarinanMedlemEjb</artifactId>
+         	</ejbModule> 
+         </modules>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
